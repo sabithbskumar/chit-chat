@@ -9,8 +9,8 @@ function PasswordInput({
 }: {
   placeholder: string;
   className: string;
-  value: string;
   name: string;
+  value: string;
   onInput: (_: ChangeEvent<HTMLInputElement>) => void;
 }) {
   const [isVisible, setIsVisible] = useState(false);
