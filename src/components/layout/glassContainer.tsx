@@ -8,7 +8,7 @@ interface GlassContainerProps {
 function GlassContainer({ children, className = "" }: GlassContainerProps) {
   return (
     <div
-      className={`grow m-auto h-full bg-[#0000] backdrop-blur backdrop-saturate-[180%] border border-[#0001] shadow-xl rounded-md overflow-hidden ${className}`}
+      className={`grow m-auto h-full bg-black bg-opacity-0 backdrop-blur backdrop-saturate-[180%] border border-[#0001] shadow-xl md:rounded-md overflow-hidden max-w-full ${className}`}
     >
       {children}
     </div>

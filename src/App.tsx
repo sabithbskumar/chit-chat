@@ -1,12 +1,15 @@
 import "./App.css";
+import { ChatLayout } from "./components/chat";
 import { GlassContainer, MainContainer } from "./components/layout";
 import { SideBar } from "./components/sidebar";
 
 function App() {
   return (
-    <MainContainer className="flex gap-3">
+    <MainContainer>
       <SideBar />
-      <GlassContainer />
+      <GlassContainer>
+        <ChatLayout />
+      </GlassContainer>
     </MainContainer>
   );
 }

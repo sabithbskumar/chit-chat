@@ -21,7 +21,7 @@ function LoginPage() {
   }
   return (
     <>
-      <MainContainer className="flex gap-3 max-w-4xl w-full m-auto">
+      <MainContainer className="max-w-4xl w-full m-auto">
         <GlassContainer className="flex flex-col">
           <form
             className="shrink-0 flex flex-col gap-6 py-2 h-full overflow-auto text-slate-100 backdrop-blur-sm bg-[#0004]"
