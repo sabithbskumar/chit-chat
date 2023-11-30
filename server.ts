@@ -119,6 +119,17 @@ app.get("/", function (req, res, next) {
   }
 });
 
+app.get("/login", function (_, __, next) {
+  next();
+});
+app.get("/signup", function (_, __, next) {
+  next();
+});
+app.get("/logout", function (_, res) {
+  unsetAuthCookies(res);
+  res.redirect("/login");
+});
+
 app.get("/api/get_members", function (_, res) {
   const members: Record<string, string> = {};
   channel.members.forEach((email) => {

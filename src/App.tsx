@@ -79,7 +79,7 @@ function App() {
   }, []);
 
   return (
-    <MainContainer>
+    <MainContainer isLoggedIn={true}>
       <GlassContainer>
         <ChatLayout onSendMessage={sendMessage} messages={messages} />
       </GlassContainer>
