@@ -1,17 +1,8 @@
 import { useState } from "react";
 import ArrowLeftIcon from "~icons/material-symbols/chevron-left-rounded";
 import ArrowRightIcon from "~icons/material-symbols/chevron-right-rounded";
-function SideBar() {
-  const names = [
-    "user one",
-    "user two",
-    "user three",
-    "user four",
-    "user five",
-    "user six",
-    "user seven",
-  ];
 
+function SideBar({ members }: { members: Record<string, string> }) {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -20,11 +11,11 @@ function SideBar() {
         isActive ? "w-full" : "w-min lg:w-full"
       }`}
     >
-      <div className="flex flex-col gap-2 p-2 pr-0 gutter-stable pb-16 md:pb-24 max-h-full max-w-full overflow-hidden overflow-y-auto">
-        {names.map((name, i) => {
+      <div className="flex flex-col gap-2 p-2 pr-0 gutter-stable pb-16 md:pb-24 lg:pb-2 max-h-full max-w-full overflow-hidden overflow-y-auto">
+        {Object.entries(members).map(([id, name]) => {
           return (
             <button
-              key={i}
+              key={id}
               title={name}
               className={`w-full h-14 md:h-20 text-gray-600 font-bold md:p-3 bg-[#fffa] rounded flex gap-4`}
             >

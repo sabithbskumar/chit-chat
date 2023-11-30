@@ -5,13 +5,15 @@ function PasswordInput({
   className = "",
   name,
   value,
-  onInput,
+  onChange,
+  required = false,
 }: {
   placeholder: string;
   className: string;
   name: string;
   value: string;
-  onInput: (_: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (_: ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
 }) {
   const [isVisible, setIsVisible] = useState(false);
   return (
@@ -20,11 +22,13 @@ function PasswordInput({
         type={isVisible ? "text" : "password"}
         className="w-full h-full outline-none"
         placeholder={placeholder}
-        onInput={onInput}
+        onChange={onChange}
         value={value}
         name={name}
+        required={required}
       />
       <button
+        type="button"
         className="outline-none focus:font-bold"
         onClick={() => setIsVisible(!isVisible)}
       >

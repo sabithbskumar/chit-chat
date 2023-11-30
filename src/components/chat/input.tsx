@@ -14,7 +14,7 @@ export function MessageInput({ onSend }: { onSend: (_: string) => void }) {
     <>
       <form className="shrink-0 m-2 flex gap-2 relative" onSubmit={handleSend}>
         <input
-          className="grow p-3 pr-12 text-black rounded-md outline-none focus-within:ring-4 ring-blue-500"
+          className="grow p-3 pr-12 text-black rounded-md outline-none focus-within:ring-4 ring-blue-500 min-w-0"
           type="text"
           maxLength={2000}
           placeholder="Enter your message"

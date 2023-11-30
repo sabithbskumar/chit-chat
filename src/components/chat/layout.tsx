@@ -1,35 +1,15 @@
-import { useState } from "react";
 import { MessageInput } from "./input";
-import { Messages } from "./messages";
+import { MessageI, Messages } from "./messages";
 
-export interface MessageI {
-  id: number;
-  userId: string;
-  userName: string;
-  message: {
-    type: "text";
-    content: string;
-  };
-}
-
-function messageTemplate(message: string): MessageI {
-  return {
-    id: Date.now(),
-    userId: "233",
-    userName: "user name",
-    message: {
-      type: "text",
-      content: message,
-    },
-  };
-}
-
-export function Layout() {
-  const [messages, setMessages] = useState<MessageI[]>([]);
-
+export function Layout({
+  onSendMessage,
+  messages,
+}: {
+  onSendMessage: (_: string) => void;
+  messages: MessageI[];
+}) {
   function onSend(message: string) {
-    const messageObj = messageTemplate(message);
-    setMessages([messageObj, ...messages]);
+    onSendMessage(message);
   }
 
   return (
