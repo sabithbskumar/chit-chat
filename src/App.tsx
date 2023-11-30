@@ -80,10 +80,10 @@ function App() {
 
   return (
     <MainContainer>
-      <SideBar members={members} />
       <GlassContainer>
         <ChatLayout onSendMessage={sendMessage} messages={messages} />
       </GlassContainer>
+      <SideBar members={members} />
     </MainContainer>
   );
 }
