@@ -37,9 +37,9 @@ function SideBar({ members }: { members: Record<string, string> }) {
           onClick={() => setIsActive(!isActive)}
         >
           {isActive ? (
-            <ArrowRightIcon className="w-full h-full rounded bg-white bg-opacity-50 hover:bg-opacity-100" />
-          ) : (
             <ArrowLeftIcon className="w-full h-full rounded bg-white bg-opacity-50 hover:bg-opacity-100" />
+          ) : (
+            <ArrowRightIcon className="w-full h-full rounded bg-white bg-opacity-50 hover:bg-opacity-100" />
           )}
         </button>
       </div>
