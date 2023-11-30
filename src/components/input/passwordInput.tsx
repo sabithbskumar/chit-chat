@@ -26,6 +26,7 @@ function PasswordInput({
         value={value}
         name={name}
         required={required}
+        minLength={6}
       />
       <button
         type="button"
