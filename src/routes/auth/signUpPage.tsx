@@ -2,12 +2,13 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { PasswordInput } from "../../components/input/passwordInput";
 import { GlassContainer, MainContainer } from "../../components/layout";
 import { useNavigate } from "react-router-dom";
+import SpinnerIcon from "~icons/gg/spinner";
 
 function SignUpPage() {
   const inputClass =
     "text-slate-800 bg-white outline-none focus:ring-4 ring-blue-500 shrink-0 px-6 block max-w-[400px] mx-auto w-full rounded-full h-12";
   const buttonClass =
-    "disabled:bg-blue-400 bg-blue-700 hover:bg-blue-500 outline-none focus:ring-4 ring-blue-500 shrink-0 px-6 block max-w-[400px] mx-auto w-full rounded-full h-12 font-bold dis";
+    "disabled:bg-blue-400 bg-blue-700 hover:bg-blue-500 outline-none focus:ring-4 ring-blue-500 shrink-0 px-6 block max-w-[400px] mx-auto w-full rounded-full h-12 font-bold relative";
   const anchorClass =
     "outline-none focus:ring-4 ring-blue-500 shrink-0 text-gray-200 text-center font-semibold py-3 px-1 max-w-[400px] mx-auto w-full h-12 hover:text-blue-500 rounded-full";
 
@@ -127,12 +128,16 @@ function SignUpPage() {
                 {message}
               </span>
             )}
-            <input
+            <button
               type="submit"
               className={buttonClass}
               disabled={hasSubmitted}
-              value={"Create Account"}
-            />
+            >
+              {hasSubmitted && (
+                <SpinnerIcon className="absolute top-0 bottom-0 right-4 h-full w-6 animate-spin" />
+              )}
+              <span>Create Account</span>
+            </button>
             <span className="w-full text-center font-medium text-gray-300">
               Already have an account?
               <a

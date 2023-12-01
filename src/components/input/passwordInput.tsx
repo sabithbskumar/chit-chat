@@ -1,3 +1,5 @@
+import EyeOnIcon from "~icons/material-symbols/visibility-rounded";
+import EyeOffIcon from "~icons/material-symbols/visibility-off-rounded";
 import { ChangeEvent, useState } from "react";
 
 function PasswordInput({
@@ -19,7 +21,12 @@ function PasswordInput({
 }) {
   const [isVisible, setIsVisible] = useState(false);
   return (
-    <div className={`${className.replace("focus", "focus-within")} flex gap-2`}>
+    <div
+      className={`${className.replace(
+        "focus",
+        "focus-within"
+      )} pr-0 flex gap-2`}
+    >
       <input
         type={isVisible ? "text" : "password"}
         className="w-full h-full outline-none"
@@ -33,10 +40,10 @@ function PasswordInput({
       />
       <button
         type="button"
-        className="outline-none focus:font-bold"
+        className="rounded-full px-4"
         onClick={() => setIsVisible(!isVisible)}
       >
-        {isVisible ? "Hide" : "Show"}
+        {isVisible ? <EyeOffIcon /> : <EyeOnIcon />}
       </button>
     </div>
   );
