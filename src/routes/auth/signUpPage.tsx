@@ -86,6 +86,7 @@ function SignUpPage() {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              maxLength={32}
               required
             />
             <input
@@ -95,6 +96,7 @@ function SignUpPage() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              maxLength={32}
               required
             />
             <PasswordInput
@@ -104,6 +106,7 @@ function SignUpPage() {
               value={formData.password}
               onChange={handleChange}
               required={true}
+              minLength={6}
             />
             <PasswordInput
               placeholder="Confirm Password"
@@ -112,6 +115,7 @@ function SignUpPage() {
               value={formData.confirmPassword}
               onChange={handleChange}
               required={true}
+              minLength={6}
             />
             {error != "" && (
               <span className="text-center text-red-400 font-bold">

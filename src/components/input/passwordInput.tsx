@@ -7,6 +7,7 @@ function PasswordInput({
   value,
   onChange,
   required = false,
+  minLength = 0,
 }: {
   placeholder: string;
   className: string;
@@ -14,6 +15,7 @@ function PasswordInput({
   value: string;
   onChange: (_: ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
+  minLength?: number;
 }) {
   const [isVisible, setIsVisible] = useState(false);
   return (
@@ -26,7 +28,8 @@ function PasswordInput({
         value={value}
         name={name}
         required={required}
-        minLength={6}
+        minLength={minLength}
+        maxLength={32}
       />
       <button
         type="button"
