@@ -7,6 +7,7 @@ function Header({ isLoggedIn = false }: { isLoggedIn?: boolean }) {
         <a href="/">ChitChat</a>
         {isLoggedIn && (
           <button
+            aria-label="logout"
             onClick={() => {
               fetch("/logout").then(() => {
                 document.location.reload();

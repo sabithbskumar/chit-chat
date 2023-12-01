@@ -40,6 +40,7 @@ function PasswordInput({
       />
       <button
         type="button"
+        aria-label="show password"
         className="rounded-full px-4"
         onClick={() => setIsVisible(!isVisible)}
       >

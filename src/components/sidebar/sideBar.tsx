@@ -35,6 +35,7 @@ function SideBar({ members }: { members: Record<string, string> }) {
         <button
           className="lg:hidden fixed bottom-2 w-14 h-14 md:w-20 md:h-20 p-4 left-2 right-2 group/toggle"
           onClick={() => setIsActive(!isActive)}
+          aria-label="toggle sidebar"
         >
           {isActive ? (
             <ArrowLeftIcon className="w-full h-full rounded bg-white bg-opacity-50 hover:bg-opacity-100" />

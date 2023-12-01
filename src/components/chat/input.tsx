@@ -23,6 +23,7 @@ export function MessageInput({ onSend }: { onSend: (_: string) => void }) {
         />
         <button
           type="submit"
+          aria-label="send message"
           className="absolute right-1 top-1 bottom-1 bg-blue-500 rounded-md"
         >
           <SendIcon className="h-full w-auto p-2" />

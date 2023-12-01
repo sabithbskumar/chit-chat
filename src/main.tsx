@@ -1,22 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { LoginPage, SignUpPage } from "./routes/auth";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    async lazy() {
+      const { App } = await import("./App");
+      return { Component: App };
+    },
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    async lazy() {
+      const { LoginPage } = await import("./routes/auth");
+      return { Component: LoginPage };
+    },
   },
   {
     path: "/signup",
-    element: <SignUpPage />,
+    async lazy() {
+      const { SignUpPage } = await import("./routes/auth");
+      return { Component: SignUpPage };
+    },
   },
 ]);
 
