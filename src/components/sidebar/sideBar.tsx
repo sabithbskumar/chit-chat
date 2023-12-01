@@ -7,8 +7,8 @@ function SideBar({ members }: { members: Record<string, string> }) {
 
   return (
     <div
-      className={`shrink-0 group/user md:max-w-xs lg:max-w-sm overflow-hidden bg-[#0001] backdrop-blur backdrop-saturate-[180%] border border-[#0001] shadow-xl rounded-none md:rounded-md ${
-        isActive ? "w-full" : "w-min lg:w-full"
+      className={`shrink-0 group/user md:max-w-xs lg:max-w-sm overflow-hidden bg-[#0001] backdrop-blur backdrop-saturate-[180%] border border-[#0001] shadow-xl rounded-none md:rounded-md transition-all ${
+        isActive ? "w-full" : "w-[4.625rem] md:w-[6.125rem] lg:w-full"
       }`}
     >
       <div className="flex flex-col gap-2 p-2 pr-0 gutter-stable pb-16 md:pb-24 lg:pb-2 max-h-full max-w-full overflow-hidden overflow-y-auto">
