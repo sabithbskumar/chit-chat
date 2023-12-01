@@ -4,6 +4,7 @@ import { ChatLayout } from "./components/chat";
 import { GlassContainer, MainContainer } from "./components/layout";
 import { SideBar } from "./components/sidebar";
 import { MessageI } from "./components/chat/messages";
+import svgLogo from "./assets/logo-animated.svg";
 
 const URL = window.location.origin.replace("http", "ws");
 
@@ -78,13 +79,46 @@ function App() {
     };
   }, []);
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  function Loader() {
+    console.log("render Loader");
+    return (
+      <div className="absolute z-20 top-0 backdrop-saturate-[100%] bottom-0 left-0 right-0">
+        <object
+          className="w-[50%] max-w-[20rem] h-full m-auto"
+          type="image/svg+xml"
+          data={svgLogo}
+        ></object>
+      </div>
+    );
+  }
+  useEffect(() => {
+    const timer = setTimeout(
+      () => {
+        setIsLoading(false);
+        sessionStorage.setItem("loaded", "true");
+      },
+      sessionStorage.getItem("loaded") === "true" ? 1300 : 1500
+    );
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
-    <MainContainer isLoggedIn={true}>
-      <SideBar members={members} />
-      <GlassContainer>
-        <ChatLayout onSendMessage={sendMessage} messages={messages} />
-      </GlassContainer>
-    </MainContainer>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <MainContainer isLoggedIn={true}>
+          <SideBar members={members} />
+          <GlassContainer>
+            <ChatLayout onSendMessage={sendMessage} messages={messages} />
+          </GlassContainer>
+        </MainContainer>
+      )}
+    </>
   );
 }
 
