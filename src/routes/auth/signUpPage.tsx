@@ -56,7 +56,7 @@ function SignUpPage() {
           setMessage(j.message);
           setTimeout(() => {
             navigate("/");
-          }, 2000);
+          }, 1500);
         } else {
           setError(j.message);
           setHasSubmitted(false);
