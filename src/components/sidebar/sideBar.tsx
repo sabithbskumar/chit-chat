@@ -17,7 +17,9 @@ function SideBar({ members }: { members: Record<string, string> }) {
             <button
               key={id}
               title={name}
-              className={`w-full h-14 md:h-20 text-gray-600 font-bold md:p-3 bg-[#fffa] rounded flex gap-4`}
+              className={`w-full h-14 md:h-20 text-gray-600 font-bold md:p-3 rounded flex gap-4${
+                isActive ? " bg-[#fffa]" : " md:bg-[#fffa]"
+              }`}
             >
               <span className="shrink-0 h-14 w-14 bg-gradient-to-tr from-sky-500 to-indigo-500 text-white rounded cursor-default leading-[3.5rem] text-center">
                 {name.charAt(0).toUpperCase()}
