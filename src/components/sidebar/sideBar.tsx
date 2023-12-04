@@ -2,7 +2,11 @@ import { useState } from "react";
 import ArrowLeftIcon from "~icons/material-symbols/chevron-left-rounded";
 import ArrowRightIcon from "~icons/material-symbols/chevron-right-rounded";
 
-function SideBar({ members }: { members: Record<string, string> }) {
+function SideBar({
+  members,
+}: {
+  members: Record<string, { name: string; count: number }>;
+}) {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -12,24 +16,24 @@ function SideBar({ members }: { members: Record<string, string> }) {
       }`}
     >
       <div className="flex flex-col gap-2 p-2 pr-0 gutter-stable pb-16 md:pb-24 lg:pb-2 max-h-full max-w-full overflow-hidden overflow-y-auto">
-        {Object.entries(members).map(([id, name]) => {
+        {Object.entries(members).map(([id, user]) => {
           return (
             <button
               key={id}
-              title={name}
+              title={user.name}
               className={`w-full h-14 md:h-20 text-gray-600 font-bold md:p-3 rounded flex gap-4${
                 isActive ? " bg-[#fffa]" : " md:bg-[#fffa]"
               }`}
             >
               <span className="shrink-0 h-14 w-14 bg-gradient-to-tr from-sky-500 to-indigo-500 text-white rounded cursor-default leading-[3.5rem] text-center">
-                {name.charAt(0).toUpperCase()}
+                {user.name.charAt(0).toUpperCase()}
               </span>
               <span
                 className={`overflow-hidden text-left whitespace-nowrap leading-[3.5rem] text-ellipsis ${
                   isActive ? "block" : "hidden lg:block"
                 }`}
               >
-                {name}
+                {user.name}
               </span>
             </button>
           );

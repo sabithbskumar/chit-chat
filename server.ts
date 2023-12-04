@@ -26,7 +26,7 @@ interface MessageI {
 
 const users = new Map<string, UserI>();
 const channel = {
-  members: new Set<string>(),
+  members: new Map<string, number>(),
   messages: new Array<MessageI>(),
 };
 console.log(channel);
@@ -48,7 +48,7 @@ wss.on("connection", (socket, req) => {
 
   const { name, id } = user;
   const members = channel.members;
-  members?.add(email);
+  members.set(email, (channel.members.get(email) || 0) + 1);
   wss.clients.forEach((client) => {
     client.send(
       JSON.stringify({ type: "join", info: `User ${name} Joined`, id, name })
@@ -72,7 +72,10 @@ wss.on("connection", (socket, req) => {
   });
 
   socket.on("close", () => {
-    members?.delete(email);
+    const count = channel.members.get(email) || 0;
+    if (count - 1 < 1) members.delete(email);
+    else members.set(email, count - 1);
+
     wss.clients.forEach((client) => {
       client.send(
         JSON.stringify({ type: "left", info: `User ${name} Left`, id, name })
@@ -131,10 +134,10 @@ app.get("/logout", function (_, res) {
 });
 
 app.get("/api/get_members", function (_, res) {
-  const members: Record<string, string> = {};
-  channel.members.forEach((email) => {
+  const members: Record<string, { name: string; count: number }> = {};
+  channel.members.forEach((count, email) => {
     const { name, id } = users.get(email)!;
-    members[id] = name;
+    members[id] = { name, count };
   });
 
   console.log(members);

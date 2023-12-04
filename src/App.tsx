@@ -10,7 +10,9 @@ const URL = window.location.origin.replace("http", "ws");
 
 function App() {
   const webSocket = useRef<WebSocket | null>(null);
-  const [members, setMembers] = useState<Record<string, string>>({});
+  const [members, setMembers] = useState<
+    Record<string, { name: string; count: number }>
+  >({});
   const [messages, setMessages] = useState<MessageI[]>([]);
 
   function sendMessage(message: string) {
@@ -41,7 +43,13 @@ function App() {
       switch (jsonMessage.type) {
         case "join":
           setMembers((prev) => {
-            return { ...prev, [jsonMessage.id]: jsonMessage.name };
+            return {
+              ...prev,
+              [jsonMessage.id]: {
+                name: jsonMessage.name,
+                count: (prev[jsonMessage.id]?.count || 0) + 1,
+              },
+            };
           });
           break;
         case "message":
@@ -49,9 +57,18 @@ function App() {
           break;
         case "left":
           setMembers((prev) => {
-            const newMembers = { ...prev };
-            delete newMembers[jsonMessage.id];
-            return newMembers;
+            if (prev[jsonMessage.id].count - 1 < 1) {
+              const newMembers = { ...prev };
+              delete newMembers[jsonMessage.id];
+              return newMembers;
+            } else
+              return {
+                ...prev,
+                [jsonMessage.id]: {
+                  name: jsonMessage.name,
+                  count: prev[jsonMessage.id].count - 1,
+                },
+              };
           });
           break;
       }
